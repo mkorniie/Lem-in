@@ -25,6 +25,9 @@ fclean: clean
 	rm -f libft.a
 re: fclean all
 cm: all clean
+doc:
+	gcc -Wall -Wextra -Werror ft_lem-in.c 
+	./a.out
 %.o: %.c
 	gcc $(FLAGS) -c -o $@ $<
 .PHONY: all clean fclean re cm
