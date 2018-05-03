@@ -21,4 +21,5 @@ typedef struct	s_room
 }				t_room;
 
 int		g_n_of_ants;
+t_room*	ft_parse(void);
 #endif
