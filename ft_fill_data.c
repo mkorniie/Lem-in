@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lem-in.c                                        :+:      :+:    :+:   */
+/*   ft_fill_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorniie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/04 21:26:21 by mkorniie          #+#    #+#             */
-/*   Updated: 2018/05/04 21:26:23 by mkorniie         ###   ########.fr       */
+/*   Created: 2018/05/04 21:26:33 by mkorniie          #+#    #+#             */
+/*   Updated: 2018/05/04 21:26:35 by mkorniie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(void)
+int	ft_fill_data(char *line, int line_number)
 {
-	g_params = (t_room*)malloc(sizeof(t_room));
-	g_params->has_start_end = 0;
-	if (!ft_parse())
-		return (0);
-	
-	// int len;
-	// char* buf;
-
-
-	// buf = (char*)malloc(sizeof(char) * (BUFSIZE + 1));
-	// buf[BUFSIZE] = '\0';
-	// len = 1;
-	// while(len > 0)
-	// {
-	// 	len = read(0, buf, BUFSIZE);
-	// 	buf[len] = '\0';
-	// 	if (ft_strstr(buf, "##end"))
-	// 		break;
-	// 	// printf("%s", buf);
-	// }
-	return (0);
+	if (line_number == 0)
+	{
+		if (!ft_isnumline(line))
+			return (0);
+		g_n_of_ants = ft_atoi(line);
+		if (g_n_of_ants <= 0)
+			return (0);
+		printf("g_n_of_ants is %d\n", g_n_of_ants);
+	}
+	if ((ft_strequ(line, "##start") == 1) || (ft_strequ(line, "##end") == 1))
+	{
+		g_params->has_start_end
+		g_params->name = ft_addtochararray(g_params->name, line);
+	}
+				
 }

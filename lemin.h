@@ -14,12 +14,19 @@
 
 typedef struct	s_room
 {
-	char		*name;
+	char		**name;
+	int			has_start_end;
 	int			pos_x;
 	int			pos_y;
 	int			*links;
 }				t_room;
 
 int		g_n_of_ants;
-t_room*	ft_parse(void);
+t_room*	g_params;
+
+int	ft_parse(void);
+int	ft_fill_data(char *line, int line_number);
+int	ft_isnumline(char *line);
+int	ft_valid_room(char *line);
+int	ft_valid_link(char *line)
 #endif
