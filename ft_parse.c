@@ -77,21 +77,56 @@ int		ft_valid_line(char *line)
 	return (-1);
 }
 
+int		ft_is_comment(char *line)
+{
+	if (line[0] == '#' && line[1] != '#')
+		return (1);
+	return (0);
+}
+
+int		ft_parsefirstline(char *line)
+{
+	int 	n_of_ants;
+	char	*tmp;
+
+	if (!ft_lineisint(line))
+		return (0);
+	n_of_ants = ft_atoi(line);
+}
+
 int		ft_parse(void)
 {
 	int		len;
 	char	*line;
-	int		i;
+	int 	flag;
 
-	i = 0;
+	flag = -1;
 	while ((len = get_next_line(0, &line)) > 0)
-	{
-		if (ft_valid_line(line) == -1 || \
-			(!ft_fill_data(line, i++)))
+		if (!ft_is_comment(line)) // leave as function for readability
 		{
-			ft_putstr("ERROR\n");
-			return (0);
+			if (flag == -1)
+			{
+				flag = 0;
+				if (!ft_parsefirstline(line))
+					return (0);
+			}
+			else if (flag == 0)
+			{
+				if(!ft_parseroom(line))
+				{
+					if (ft_parselink(line))
+						flag = 1;
+					else
+						return (0);
+				}
+			}
+			else if (flag == 1)
+			{
+				if (!ft_parselink(line))
+					return (0);
+			}
+			else
+				ft_putstr("Flag is not -1, 0 or 1! Something went wrong!\n"):
 		}
-	}
-	return (1);
+	return (flag == 1 ? 1 : 0);
 }

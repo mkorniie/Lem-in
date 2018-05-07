@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int	ft_isnumline(char *line)
+int		ft_isnumline(char *line)
 {
 	int i;
 
@@ -24,6 +24,40 @@ int	ft_isnumline(char *line)
 	}
 	if (i > 10)
 		return (0);
+	return (1);
+}
+
+void 	ft_finish_programme(void)
+{
+	ft_putstr("ERROR\n");
+	exit(0);
+}
+
+int		ft_lineisint(char *line)
+{
+	char	*tmp;
+	char	*max_int;
+	int		len;
+	int		i;
+
+	if (!ft_isnumline(line))
+		return (0);
+	tmp = ft_trimzeroes(line);
+	len = ft_strlen(tmp);
+	if (len > 10)
+		return (0);
+	else if (len < 10)
+		return (1);
+	i = 0;
+	max_int = "2147483647";
+	while (i < len)
+	{
+		if (max_int[i] > tmp[i])
+			return (1);
+		else if (max_int[i] < tmp[i])
+			return (0);
+		i++;
+	}
 	return (1);
 }
 

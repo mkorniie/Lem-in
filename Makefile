@@ -19,14 +19,17 @@ HEADER = libft.h
 
 all: $(NAME)
 $(NAME): $(LEMIN_OFILES)
-	make -C libft/ 
-	gcc $(FLAGS) -o $(NAME) $(LEMIN_OFILES) -L. -lft
+	make -C libft/
+	make -C ft_printf/
+	gcc $(FLAGS) -o $(NAME) $(LEMIN_OFILES) -L. -lft ft_printf/libftprintf.a
 clean:
 	rm -f $(LEMIN_OFILES) 
 	make -C libft/ clean
+	make -C ft_printf/ clean
 fclean: clean
 	rm -f $(NAME)
 	make -C libft/ fclean
+	make -C ft_printf/ fclean
 re: fclean all
 do: all
 	./$(NAME)
@@ -35,4 +38,4 @@ doc: all
 %.o: %.c
 	gcc $(FLAGS) -c -o $@ $<
 
-.PHONY: all clean fclean re do
+.PHONY: all clean fclean re do doc

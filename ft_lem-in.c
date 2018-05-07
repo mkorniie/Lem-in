@@ -14,10 +14,12 @@
 
 int		main(void)
 {
-	g_params = (t_room*)malloc(sizeof(t_room));
-	g_params->has_start_end = 0;
+	// g_params->has_start_end = 0;
 	if (!ft_parse())
+	{
+		ft_putstr("ERROR\n");
 		return (0);
+	}
 	
 	// int len;
 	// char* buf;
