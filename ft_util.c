@@ -12,6 +12,32 @@
 
 #include "lemin.h"
 
+char	*ft_trimzeroes(char *line)
+{
+	int i;
+	int len;
+
+	i = 0;
+	if (line == NULL)
+		return (NULL);
+	len = ft_strlen(line);
+	while ((line[i] == '0') && (i < (len - 1)))
+		i++;
+	return (line + i);
+}
+
+int 	ft_arrlen(char **arr)
+{
+	int i;
+
+	if (arr == NULL)
+		return (-1);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
 int		ft_isnumline(char *line)
 {
 	int i;

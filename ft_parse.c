@@ -12,39 +12,16 @@
 
 #include "lemin.h"
 
-int		ft_valid_link(char *line)
-{
-	int boolean;
-	int i;
-
-	i = -1;
-	boolean = 0;
-	if (line == NULL)
-		return (0);
-	while (line[++i] != '\0')
-	{
-		if ((ft_isdigit(line[i]) == 0) && (line[i] != '-'))
-			return (0);
-		if (line[i] == '-')
-		{
-			if (boolean == 0)
-				boolean = 1;
-			else
-				return (0);
-		}
-	}
-	return (1);
-}
-
-int		ft_valid_room(char *line)
+char	**ft_getroomparams(char *line)
 {
 	char *temp;
+	char **split;
 	int i;
 
 	i = 0;
 	temp = line;
 	if (line == NULL)
-		return (0);
+		return (NULL);
 	while ((temp = ft_strchr(temp, ' ')) != NULL)
 	{
 		i++; 
@@ -53,45 +30,68 @@ int		ft_valid_room(char *line)
 		else
 			temp = temp + 1;
 	}
-	if ((line[0] == 'L') || (line[0] == '#'))
-		return (0);
-	if (i == 2)
-		return (1);
-	return (0);
+	if (i != 2)
+		return (NULL);
+	split = ft_strsplit(line, ' ');
+	return ((ft_arrlen(split) != 3) ? NULL : split);
 }
 
-int		ft_valid_line(char *line)
+int		ft_parseroom(char *line)
 {
-	if (line[0] == '#')
+	static int		status;
+	t_graph_point	*new;
+	char			**split;
+
+	if (status == 0)
+		if ((status = ft_line_is_command(line)) != 0)
+			return (1);
+	if ((line == NULL) || (line[0] == 'L') || (line[0] == '#'))
+		return (0);
+	new = ft_newgraphlist();
+	if ((split = ft_getroomparams(line)) == NULL)
+		return (0);
+	new->name = split[0];
+	new->pos_x = ft_getint(split[1]);
+	new->pos_y = ft_getint(split[2]);
+	new->status = status;
+	ft_addtotail(new);
+	status = 0;
+	return (1);
+}
+
+char	**ft_getlinkparams(char *line)
+{
+	char *temp;
+	char **split;
+	int i;
+
+	i = 0;
+	temp = line;
+	if (line == NULL)
+		return (NULL);
+	while ((temp = ft_strchr(temp, '-')) != NULL)
 	{
-		if(line[1] == '#')
-		{
-			if ((ft_strequ(line, "##start") == 1) || (ft_strequ(line, "##end") == 1))
-				return (1);
-			return (-1);
-		}
-		return (1);
+		i++; 
+		if (temp[1] == '\0')
+			break;
+		else
+			temp = temp + 1;
 	}
-	if (ft_valid_room(line) || ft_valid_link(line))
-		return (1);
-	return (-1);
+	if (i != 1)
+		return (NULL);
+	split = ft_strsplit(line, '-');
+	return ((ft_arrlen(split) != 2) ? NULL : split);
 }
 
-int		ft_is_comment(char *line)
+void	ft_parselink(char *line)
 {
-	if (line[0] == '#' && line[1] != '#')
-		return (1);
-	return (0);
-}
+	char **split;
 
-int		ft_parsefirstline(char *line)
-{
-	int 	n_of_ants;
-	char	*tmp;
-
-	if (!ft_lineisint(line))
-		return (0);
-	n_of_ants = ft_atoi(line);
+	if (line == NULL)
+		return ;
+	if ((split = ft_getlinkparams(line)) == NULL)
+		ft_parse_exit(line);
+	ft_addtomatrix(split);
 }
 
 int		ft_parse(void)
@@ -102,31 +102,23 @@ int		ft_parse(void)
 
 	flag = -1;
 	while ((len = get_next_line(0, &line)) > 0)
+	{
 		if (!ft_is_comment(line)) // leave as function for readability
 		{
 			if (flag == -1)
 			{
+				ft_parsefirstline(line);
 				flag = 0;
-				if (!ft_parsefirstline(line))
-					return (0);
 			}
-			else if (flag == 0)
+			else if ((flag == 0) && (!ft_parseroom(line)))
 			{
-				if(!ft_parseroom(line))
-				{
-					if (ft_parselink(line))
-						flag = 1;
-					else
-						return (0);
-				}
+				ft_parselink(line);
+				flag = 1;
 			}
 			else if (flag == 1)
-			{
-				if (!ft_parselink(line))
-					return (0);
-			}
-			else
-				ft_putstr("Flag is not -1, 0 or 1! Something went wrong!\n"):
+				ft_parselink(line);
 		}
+		free(line);
+	}
 	return (flag == 1 ? 1 : 0);
 }
