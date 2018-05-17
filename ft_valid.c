@@ -12,51 +12,13 @@
 
 #include "lemin.h"
 
-int		ft_valid_link(char *line)
-{
-	int boolean;
-	int i;
-
-	i = -1;
-	boolean = 0;
-	if (line == NULL)
-		return (0);
-	while (line[++i] != '\0')
-	{
-		if ((ft_isdigit(line[i]) == 0) && (line[i] != '-'))
-			return (0);
-		if (line[i] == '-')
-		{
-			if (boolean == 0)
-				boolean = 1;
-			else
-				return (0);
-		}
-	}
-	return (1);
-}
-
-int		ft_valid_line(char *line)
-{
-	if (line[0] == '#')
-	{
-		if(line[1] == '#')
-		{
-			if ((ft_strequ(line, "##start") == 1) || (ft_strequ(line, "##end") == 1))
-				return (1);
-			return (-1);
-		}
-		return (1);
-	}
-	if (ft_valid_room(line) || ft_valid_link(line))
-		return (1);
-	return (-1);
-}
-
 int		ft_is_comment(char *line)
 {
 	if (line[0] == '#' && line[1] != '#')
+	{
+		ft_printf("%s\n", line);
 		return (1);
+	}
 	return (0);
 }
 

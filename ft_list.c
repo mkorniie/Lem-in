@@ -46,6 +46,8 @@ int				ft_addtotail(t_graph_point *elem)
 	return (1);
 }
 
+int		ft_findgraphindex(char *name);
+
 void			ft_printgraphlist(void)
 {
 	t_graph_point	*tmp;
@@ -59,7 +61,7 @@ void			ft_printgraphlist(void)
 		tmp = g_head;
 		while (tmp)
 		{
-			ft_printf("Room %d : name = '%s', ", i, tmp->name);
+			ft_printf("Room %d : name = '%s', ", ft_findgraphindex(tmp->name), tmp->name);
 			ft_printf("pos_x = %d, pos_y = %d, ", tmp->pos_x, tmp->pos_y);
 			ft_printf("status = %d, next is %p\n", tmp->status, tmp->next);
 			tmp = tmp->next;
@@ -70,6 +72,7 @@ void			ft_printgraphlist(void)
 t_graph_point	*ft_findelem(char *name)
 {
 	t_graph_point	*tmp;
+	int i;
 
 	if ((name == NULL) || (g_head == NULL))
 		return (NULL);

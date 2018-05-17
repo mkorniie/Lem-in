@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill_data.c                                     :+:      :+:    :+:   */
+/*   ft_algorithm.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorniie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/04 21:26:33 by mkorniie          #+#    #+#             */
-/*   Updated: 2018/05/04 21:26:35 by mkorniie         ###   ########.fr       */
+/*   Created: 2018/05/17 20:01:39 by mkorniie          #+#    #+#             */
+/*   Updated: 2018/05/17 20:01:43 by mkorniie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int	ft_line_is_command(char *line)
+void	ft_findpath(void);
 {
-	if (line == NULL)
-		return (0);
-	if (ft_strequ(line, "##start") == 1)
-	{
-		g_has_start_end++;
-		if (g_has_start_end <= 2)
-			return (1);
-		else
-			ft_parse_exit(line);
-	}
-	if (ft_strequ(line, "##end") == 1)
-	{
-		g_has_start_end++;
-		if (g_has_start_end <= 2)
-			return (2);
-		else
-			ft_parse_exit(line);
-	}
-	return (0);
+	ft_fillpathmatrix();
+	ft_findoptimalways();
+	ft_go();
 }
