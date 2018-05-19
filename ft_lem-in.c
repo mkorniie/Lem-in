@@ -50,9 +50,9 @@ int		main(void)
 		ft_putstr("ERROR\n");
 		return (0);
 	}
-	ft_lstprint(g_comments_head);
-	// ft_printgraphlist();
-	// ft_print_matrix();
+	ft_lstprint(g_comments_head); // перенести - проверка на валидный инпут (есть хоть один путь, ...)
+	ft_printgraphlist();
+	ft_print_matrix();
 	// ft_findpath();
 	return (0);
 }

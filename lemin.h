@@ -41,6 +41,9 @@ int				**g_adjacency_matrix;
 int				g_has_start_end;
 int				g_n_of_rooms;
 t_list			*g_comments_head;
+int				g_start_index;
+int				g_end_index;
+t_list			*g_ways;
 t_graph_point	*g_head;
 t_graph_point	*g_tail;
 
