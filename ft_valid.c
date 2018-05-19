@@ -12,16 +12,6 @@
 
 #include "lemin.h"
 
-int		ft_is_comment(char *line)
-{
-	if (line[0] == '#' && line[1] != '#')
-	{
-		ft_printf("%s\n", line);
-		return (1);
-	}
-	return (0);
-}
-
 int		ft_getint(char *line)
 {
 	if (!ft_lineisint(line))
@@ -35,4 +25,50 @@ void	ft_parsefirstline(char *line)
 	if (g_n_of_ants <= 0)
 		ft_parse_exit(line);
 	
+}
+
+void	ft_lstprint(t_list *head)
+{
+	t_list *tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		write(1, tmp->content, tmp->content_size);
+		write(1, "\n", 1);
+		tmp = tmp->next;
+	}
+}
+
+void	ft_lstaddtotail(t_list **alst, t_list *new)
+{
+	t_list *tmp;
+
+	ft_printf("It's ft_lstaddtotail!\n");
+	if (alst == NULL || new == NULL)
+		return ;
+	if (*alst == NULL)
+		*alst = new;
+	else
+	{
+		tmp = *alst;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next = new;
+	}
+}
+
+int		ft_is_comment(char *line)
+{
+	t_list	*new_comment;
+
+	if (line[0] == '#' && line[1] != '#')
+	{
+		new_comment = ft_lstnew(line, ft_strlen(line));
+		ft_lstaddtotail(&g_comments_head, new_comment);
+		return (1);
+	}
+	return (0);
 }

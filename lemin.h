@@ -39,6 +39,8 @@ typedef struct				s_graph_point
 int				g_n_of_ants;
 int				**g_adjacency_matrix;
 int				g_has_start_end;
+int				g_n_of_rooms;
+t_list			*g_comments_head;
 t_graph_point	*g_head;
 t_graph_point	*g_tail;
 
@@ -63,4 +65,5 @@ void			ft_printgraphlist(void);
 t_graph_point	*ft_findelem(char *name);
 int				ft_is_comment(char *line);
 void			ft_addtomatrix(char **split);
+void			ft_lstprint(t_list *head);
 #endif

@@ -46,28 +46,28 @@ void	ft_fillwithzeroes(int *line, int len)
 
 void	ft_create_matrix(void)
 {
-	int map_size;
+	// int map_size;
 	int	i;
 
-	map_size = ft_graphlistlen();
-	g_adjacency_matrix = (int**)malloc(sizeof(int*) * (map_size + 1));
+	g_n_of_rooms = ft_graphlistlen();
+	g_adjacency_matrix = (int**)malloc(sizeof(int*) * (g_n_of_rooms + 1));
 	// ft_printf("Mapsize is %d\n", map_size);
 	if (g_adjacency_matrix == NULL)
 	{
 		perror("Error in ft_create_matrix: ");
 		exit(0);
 	}
-	g_adjacency_matrix[map_size] = NULL;
+	g_adjacency_matrix[g_n_of_rooms] = NULL;
 	i = 0;
-	while (i < map_size)
+	while (i < g_n_of_rooms)
 	{
-		g_adjacency_matrix[i] = (int*)malloc(sizeof(int) * (map_size + 1));
+		g_adjacency_matrix[i] = (int*)malloc(sizeof(int) * (g_n_of_rooms + 1));
 		if (g_adjacency_matrix[i] == NULL)
 		{
 			perror("Error in ft_create_matrix: ");
 			exit(0);
 		}
-		ft_fillwithzeroes(g_adjacency_matrix[i], map_size + 1);
+		ft_fillwithzeroes(g_adjacency_matrix[i], g_n_of_rooms + 1);
 		i++;
 	}
 }
