@@ -12,6 +12,32 @@
 
 #include "lemin.h"
 
+int	ft_intlsthascontent(int *content)
+{
+	t_list *tmp;
+	int boolean;
+	int i;
+	int *tmp_content;
+
+	tmp = g_ways;
+	while (tmp)
+	{
+		i = 0;
+		boolean = 1;
+		tmp_content = (int*)(tmp->content);
+		while (i < g_n_of_rooms)
+		{
+			if (content[i] != tmp_content[i])
+				boolean = 0;
+			i++;
+		}
+		if (boolean == 1)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int	ft_line_is_command(char *line)
 {
 	if (line == NULL)

@@ -57,35 +57,28 @@ void		ft_findpath(int path_n, int *rooms)
 	rooms[path_n] = 1;
 	while (i < g_n_of_rooms)
 	{
-		ft_printf("path is %d, i is %d\n", path_n, i);
-		if (g_adjacency_matrix[path_n][i] == 1)
+		// ft_printf("path is %d, i is %d\n", path_n, i);
+		if (g_adjacency_matrix[path_n][i] == 1 && rooms[i] == 0)
 		{
-			if (rooms[i] == 0)
+			if (i == g_end_index)
 			{
-				if (i == g_end_index)
+				// ft_printf("End riched!\n");
+				if (ft_intlsthascontent(rooms) == 0)
 				{
-					ft_printf("End riched!\n");
 					cont = ft_intcopy(rooms, g_n_of_rooms);
-					// ft_printf("Now cont is %d %d %d\n", cont[0], cont[1], cont[2]);
-					new = ft_lstnew(cont, g_n_of_rooms);
+					new = ft_lstnew(cont, (g_n_of_rooms * (sizeof(int) / sizeof(void))));
 					ft_lstaddtotail(&g_ways, new);
-					// return (1);
 				}
-				else
-				{
-					rooms[i] = 1;
-					ft_findpath(i, rooms);
-				}
-				// if (ft_findpath(i, rooms) == 1)
-				// 	return (1);
-				// else
-				// 	return (0);
+			}
+			else
+			{
+				rooms[i] = 1;
+				ft_findpath(i, rooms);
 			}
 		}
 		i++;
 	}
 	rooms[path_n] = 0;
-	// return (0);
 }
 
 void	ft_fill_pathmatrix(void)
@@ -113,7 +106,7 @@ void	ft_solve(void)
 {
 	ft_fill_pathmatrix();
 	ft_printf("Lst print!\n");
-	ft_lstprintarr(g_ways);
-	// ft_findoptimalways(path_matrix);
+	ft_lstprintintarr(g_ways);
+	ft_findoptimalways();
 	// ft_go();
 }

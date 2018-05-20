@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -36,11 +35,17 @@ typedef struct				s_graph_point
 	struct s_graph_point	*next;
 }							t_graph_point;
 
+typedef struct				s_optimization_params
+{
+	int						
+}							t_oparams;
+
 int				g_n_of_ants;
 int				**g_adjacency_matrix;
 int				g_has_start_end;
 int				g_n_of_rooms;
 t_list			*g_comments_head;
+t_list			*g_optimalpool;
 int				g_start_index;
 int				g_end_index;
 t_list			*g_ways;
@@ -50,7 +55,7 @@ t_graph_point	*g_tail;
 void			ft_solve(void);
 void			ft_exit(void);
 int				ft_parse(void);
-void			ft_lstprintarr(t_list *head);
+void			ft_lstprintintarr(t_list *head);
 int				ft_line_is_command(char *line);
 int				ft_fill_data(char *line, int line_number);
 int				ft_isnumline(char *line);
@@ -72,4 +77,6 @@ int				ft_is_comment(char *line);
 void			ft_addtomatrix(char **split);
 void			ft_lstprint(t_list *head);
 void			ft_lstaddtotail(t_list **alst, t_list *new);
+void			ft_findoptimalways(void);
+int				ft_intlsthascontent(int *content);
 #endif

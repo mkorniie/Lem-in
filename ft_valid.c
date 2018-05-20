@@ -26,7 +26,7 @@ void	ft_parsefirstline(char *line)
 		ft_parse_exit(line);
 }
 
-void	ft_lstprintarr(t_list *head)
+void	ft_lstprintintarr(t_list *head)
 {
 	t_list *tmp;
 	size_t i;
@@ -36,9 +36,9 @@ void	ft_lstprintarr(t_list *head)
 	while (tmp)
 	{
 		i = 0;
-		while (i < tmp->content_size)
+		line = (int*)(tmp->content);
+		while (i < (tmp->content_size / sizeof(int)))
 		{
-			line = (int*)tmp->content;
 			ft_printf("%d ", line[i]);
 			i++;
 		}

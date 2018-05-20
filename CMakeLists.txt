@@ -108,6 +108,7 @@ add_executable(Lem_in
         ft_lem-in.c
         ft_list.c
         ft_matrix.c
+        ft_optimal.c
         ft_parse.c
         ft_util.c
         ft_valid.c

@@ -41,6 +41,7 @@ void	ft_globelsetup(void)
 	g_adjacency_matrix = NULL;
 	g_n_of_rooms = 0;
 	g_ways = NULL;
+	g_optimalpool = NULL;
 }
 
 int		main(void)
