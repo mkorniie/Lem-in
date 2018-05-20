@@ -12,9 +12,27 @@
 
 #include "lemin.h"
 
-t_list	*ft_find_index_by_status(int status)
+int		*ft_intcopy(int *tocopy, int len)
 {
-	t_graph_point tmp;
+	int i;
+	int *res;
+
+	i = 0;
+	res = (int*)malloc(sizeof(int) * (len + 1));
+	res[len] = 0;
+	while (i < len)
+	{
+		ft_printf("%d ", tocopy[i]);
+		res[i] = tocopy[i];
+		i++;
+	}
+	ft_printf("\n");
+	return (res);
+}
+
+int		ft_find_index_by_status(int status)
+{
+	t_graph_point *tmp;
 	int i;
 
 	tmp = g_head;
@@ -29,48 +47,73 @@ t_list	*ft_find_index_by_status(int status)
 	return (-1);
 }
 
-int		ft_findpath(int path_n, int *rooms)
+void		ft_findpath(int path_n, int *rooms)
 {
 	int i;
+	t_list *new;
+	int *cont;
 
 	i = 0;
 	rooms[path_n] = 1;
 	while (i < g_n_of_rooms)
 	{
+		ft_printf("path is %d, i is %d\n", path_n, i);
 		if (g_adjacency_matrix[path_n][i] == 1)
 		{
 			if (rooms[i] == 0)
 			{
-				rooms[i] = 1;
 				if (i == g_end_index)
-					return (1);	
-				if (ft_findpath(i, rooms) == 1)
-					return (1);
+				{
+					ft_printf("End riched!\n");
+					cont = ft_intcopy(rooms, g_n_of_rooms);
+					// ft_printf("Now cont is %d %d %d\n", cont[0], cont[1], cont[2]);
+					new = ft_lstnew(cont, g_n_of_rooms);
+					ft_lstaddtotail(&g_ways, new);
+					// return (1);
+				}
 				else
-					return (0);
+				{
+					rooms[i] = 1;
+					ft_findpath(i, rooms);
+				}
+				// if (ft_findpath(i, rooms) == 1)
+				// 	return (1);
+				// else
+				// 	return (0);
 			}
 		}
 		i++;
 	}
+	rooms[path_n] = 0;
+	// return (0);
 }
 
-t_list	*ft_fill_pathmatrix(void)
+void	ft_fill_pathmatrix(void)
 {
-	t_list *head;
+	int *rooms;
+	int i;
 
 	g_start_index = ft_find_index_by_status(1);
 	g_end_index = ft_find_index_by_status(2);
-	while ()
+	rooms = (int*)malloc(sizeof(int) * (g_n_of_rooms + 1));
+	rooms[g_n_of_rooms] = 0;
+	i = 0;
+	while (i < g_n_of_rooms)
 	{
-
+		rooms[i] = 0;
+		i++;
 	}
+	ft_findpath(g_start_index, rooms);
+	if (g_ways == NULL)
+		ft_exit();
+	ft_lstprint(g_comments_head); // перенести - проверка на валидный инпут (есть хоть один путь, ...)
 }
 
-void	ft_findpath(void);
+void	ft_solve(void)
 {
-	t_list* path_matrix;
-
-	path_matrix = ft_fill_pathmatrix();
-	ft_findoptimalways(path_matrix);
-	ft_go();
+	ft_fill_pathmatrix();
+	ft_printf("Lst print!\n");
+	ft_lstprintarr(g_ways);
+	// ft_findoptimalways(path_matrix);
+	// ft_go();
 }

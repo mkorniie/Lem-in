@@ -47,8 +47,10 @@ t_list			*g_ways;
 t_graph_point	*g_head;
 t_graph_point	*g_tail;
 
+void			ft_solve(void);
 void			ft_exit(void);
 int				ft_parse(void);
+void			ft_lstprintarr(t_list *head);
 int				ft_line_is_command(char *line);
 int				ft_fill_data(char *line, int line_number);
 int				ft_isnumline(char *line);
@@ -69,4 +71,5 @@ t_graph_point	*ft_findelem(char *name);
 int				ft_is_comment(char *line);
 void			ft_addtomatrix(char **split);
 void			ft_lstprint(t_list *head);
+void			ft_lstaddtotail(t_list **alst, t_list *new);
 #endif

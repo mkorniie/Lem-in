@@ -24,7 +24,27 @@ void	ft_parsefirstline(char *line)
 	g_n_of_ants = ft_getint(line);
 	if (g_n_of_ants <= 0)
 		ft_parse_exit(line);
-	
+}
+
+void	ft_lstprintarr(t_list *head)
+{
+	t_list *tmp;
+	size_t i;
+	int *line;
+
+	tmp = head;
+	while (tmp)
+	{
+		i = 0;
+		while (i < tmp->content_size)
+		{
+			line = (int*)tmp->content;
+			ft_printf("%d ", line[i]);
+			i++;
+		}
+		write(1, "\n", 1);
+		tmp = tmp->next;
+	}
 }
 
 void	ft_lstprint(t_list *head)
@@ -46,9 +66,15 @@ void	ft_lstaddtotail(t_list **alst, t_list *new)
 
 	ft_printf("It's ft_lstaddtotail!\n");
 	if (alst == NULL || new == NULL)
+	{
+		ft_printf("It's null!\n");
 		return ;
+	}
 	if (*alst == NULL)
+	{
+		ft_printf("It's the first one!\n");
 		*alst = new;
+	}
 	else
 	{
 		tmp = *alst;

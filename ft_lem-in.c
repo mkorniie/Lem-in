@@ -40,6 +40,7 @@ void	ft_globelsetup(void)
 	g_tail = NULL;
 	g_adjacency_matrix = NULL;
 	g_n_of_rooms = 0;
+	g_ways = NULL;
 }
 
 int		main(void)
@@ -50,9 +51,8 @@ int		main(void)
 		ft_putstr("ERROR\n");
 		return (0);
 	}
-	ft_lstprint(g_comments_head); // перенести - проверка на валидный инпут (есть хоть один путь, ...)
 	ft_printgraphlist();
 	ft_print_matrix();
-	// ft_findpath();
+	ft_solve();
 	return (0);
 }
