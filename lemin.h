@@ -35,10 +35,10 @@ typedef struct				s_graph_point
 	struct s_graph_point	*next;
 }							t_graph_point;
 
-typedef struct				s_optimization_params
-{
-	int						
-}							t_oparams;
+// typedef struct				s_optimization_params
+// {
+// 	int						
+// }							t_oparams;
 
 int				g_n_of_ants;
 int				**g_adjacency_matrix;
