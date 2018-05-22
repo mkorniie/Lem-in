@@ -54,6 +54,8 @@ int		ft_parseroom(char *line)
 	new->pos_x = ft_getint(split[1]);
 	new->pos_y = ft_getint(split[2]);
 	new->status = status;
+	if (!ft_unique_name_and_coords(split[0], new->pos_x, new->pos_y))
+		ft_exit();
 	ft_addtotail(new);
 	status = 0;
 	return (1);
@@ -94,6 +96,24 @@ void	ft_parselink(char *line)
 	ft_addtomatrix(split);
 }
 
+int		ft_if_unknown_command(char *line)
+{
+	t_list *new_comment;
+
+	if (line[0] == '#' && line[1] == '#')
+	{
+		if (ft_strequ("##start", line) || ft_strequ("##end", line))
+			return (0);
+		else
+		{
+			new_comment = ft_lstnew(line, ft_strlen(line));
+			ft_lstaddtotail(&g_comments_head, new_comment);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int		ft_parse(void)
 {
 	int		len;
@@ -103,7 +123,7 @@ int		ft_parse(void)
 	flag = -1;
 	while ((len = get_next_line(0, &line)) > 0)
 	{
-		if (!ft_is_comment(line)) // leave as function for readability
+		if (!ft_is_comment(line) && !ft_if_unknown_command(line)) // leave as function for readability
 		{
 			if (flag == -1)
 			{

@@ -63,6 +63,7 @@ void		ft_findpath(int path_n, int *rooms)
 			if (i == g_end_index)
 			{
 				// ft_printf("End riched!\n");
+				// rooms[g_end_index] = 1;
 				if (ft_intlsthascontent(rooms) == 0)
 				{
 					cont = ft_intcopy(rooms, g_n_of_rooms);

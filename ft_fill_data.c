@@ -12,6 +12,36 @@
 
 #include "lemin.h"
 
+// int	ft_unique_coords(int pos_x, int pos_y)
+// {
+// 	t_graph_point *tmp;
+
+// 	tmp = g_head;
+// 	while (tmp)
+// 	{
+// 		if (ft_strequ(tmp->name, name))
+// 			return (0);
+// 		tmp = tmp->next;
+// 	}
+// 	return (1);
+// }
+
+int	ft_unique_name_and_coords(char *name, int pos_x, int pos_y)
+{
+	t_graph_point *tmp;
+
+	tmp = g_head;
+	while (tmp)
+	{
+		if (ft_strequ(tmp->name, name))
+			return (0);
+		if ((tmp->pos_x == pos_x) && (tmp->pos_y == pos_y))
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 int	ft_intlsthascontent(int *content)
 {
 	t_list *tmp;

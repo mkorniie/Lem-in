@@ -64,15 +64,15 @@ void	ft_lstaddtotail(t_list **alst, t_list *new)
 {
 	t_list *tmp;
 
-	ft_printf("It's ft_lstaddtotail!\n");
+	// ft_printf("It's ft_lstaddtotail!\n");
 	if (alst == NULL || new == NULL)
 	{
-		ft_printf("It's null!\n");
+		// ft_printf("It's null!\n");
 		return ;
 	}
 	if (*alst == NULL)
 	{
-		ft_printf("It's the first one!\n");
+		// ft_printf("It's the first one!\n");
 		*alst = new;
 	}
 	else

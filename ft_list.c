@@ -46,8 +46,6 @@ int				ft_addtotail(t_graph_point *elem)
 	return (1);
 }
 
-int		ft_findgraphindex(char *name);
-
 void			ft_printgraphlist(void)
 {
 	t_graph_point	*tmp;

@@ -35,11 +35,6 @@ typedef struct				s_graph_point
 	struct s_graph_point	*next;
 }							t_graph_point;
 
-// typedef struct				s_optimization_params
-// {
-// 	int						
-// }							t_oparams;
-
 int				g_n_of_ants;
 int				**g_adjacency_matrix;
 int				g_has_start_end;
@@ -79,4 +74,7 @@ void			ft_lstprint(t_list *head);
 void			ft_lstaddtotail(t_list **alst, t_list *new);
 void			ft_findoptimalways(void);
 int				ft_intlsthascontent(int *content);
+int				ft_findgraphindex(char *name);
+int				ft_unique_name(char *name);
+int				ft_unique_name_and_coords(char *name, int pos_x, int pos_y);
 #endif

@@ -12,15 +12,6 @@
 
 #include "lemin.h"
 
-// ft_change()
-// {
-
-// }
-// t_list	*ft_findbest(all_optimal_pathes)
-// {
-
-// }
-
 int		ft_countpathlen(t_list *path)
 {
 	int i;
@@ -29,14 +20,14 @@ int		ft_countpathlen(t_list *path)
 
 	i = 0;
 	len = 0;
-	rooms = (int*)path->cont;
+	rooms = (int*)(path->content);
 	while (i < g_n_of_rooms)
 	{
 		if (rooms[i] == 1)
 			len++;
 		i++;
 	}
-	ft_printf("Now path length is %d\n", len);
+	// ft_printf("Now path length is %d\n", len);
 	return (len);
 }
 
@@ -72,11 +63,13 @@ t_list	*ft_findshortest(void)
 	t_list	*all_optimal_pathes;
 
 	shortes_len = ft_count_shortest_len();
+	all_optimal_pathes = NULL;
 	tmp = g_ways;
 	while (tmp)
 	{
 		if (ft_countpathlen(tmp) == shortes_len)
 		{
+			// ft_printf("It's equal! %d\n", sizeof(t_list*));
 			add = ft_lstnew(tmp, sizeof(t_list*));
 			ft_lstaddtotail(&all_optimal_pathes, add);
 		}
@@ -85,30 +78,34 @@ t_list	*ft_findshortest(void)
 	return (all_optimal_pathes);
 }
 
+void	ft_poollstprint(t_list *pool)
+{
+	t_list	*tmp;
+	t_list	*to_print;
+	int		*rooms;
+	int		i;
+
+	tmp = pool;
+	while (tmp)
+	{
+		to_print = (t_list*)(tmp->content);
+		rooms = (int*)to_print->content;
+		i = 0;
+		while (i < g_n_of_rooms)
+		{
+			ft_printf("%d ", rooms[i]);
+			i++;
+		}
+		ft_printf("\n");
+		tmp = tmp->next;
+	}
+}
+
 void	ft_findoptimalways(void)
 {
 	t_list *all_optimal_pathes;
-	t_list *res;
 
 	all_optimal_pathes = ft_findshortest();
-	res = ft_findbest(all_optimal_pathes);
-	// tmp = all_optimal_pathes;
-	// max_n_of_ways = -1;
-	// while (tmp)
-	// {
-	// 	tmp_sum = ft_findlensum(tmp, &n_of_ways);
-	// 	if (max_n_of_ways == -1)
-	// 	{
-	// 		min_sum = tmp_sum;
-	// 		max_n_of_ways = n_of_ways;	
-	// 	}
-	// 	else if (tmp_sum < min_sum)
-	// 	{
-	// 		min_sum = tmp_sum;
-	// 	}
-	// 	tmp = tmp->next;
-	// }
-	// new = ft_lstnew(cont, (g_n_of_rooms * (sizeof(int) / sizeof(void))));
-	// ft_lstaddtotail(&g_ways, new);
-	return (res);
+	g_optimalpool = all_optimal_pathes;
+	ft_poollstprint(g_optimalpool);
 }
