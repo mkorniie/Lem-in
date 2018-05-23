@@ -1,0 +1,19 @@
+12
+##start
+start 1 1
+top1 2 1
+top2 3 4
+top3 5 4
+##end
+end 3 8
+bottom1 3 2
+bottom2 9 2
+bottom3 0 2
+start-top1
+top1-top2
+top2-top3
+top3-end
+start-bottom1
+bottom1-bottom2
+bottom2-bottom3
+bottom3-end

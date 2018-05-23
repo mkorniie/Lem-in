@@ -57,13 +57,10 @@ void		ft_findpath(int path_n, int *rooms)
 	rooms[path_n] = 1;
 	while (i < g_n_of_rooms)
 	{
-		// ft_printf("path is %d, i is %d\n", path_n, i);
-		if (g_adjacency_matrix[path_n][i] == 1 && rooms[i] == 0)
+		if ((g_adjacency_matrix[path_n][i] == 1) && (rooms[i] == 0))
 		{
 			if (i == g_end_index)
 			{
-				// ft_printf("End riched!\n");
-				// rooms[g_end_index] = 1;
 				if (ft_intlsthascontent(rooms) == 0)
 				{
 					cont = ft_intcopy(rooms, g_n_of_rooms);
@@ -109,5 +106,6 @@ void	ft_solve(void)
 	ft_printf("Lst print!\n");
 	ft_lstprintintarr(g_ways);
 	ft_findoptimalways();
-	// ft_go();
+	ft_printf("We are about TO GO!\n");
+	ft_go();
 }

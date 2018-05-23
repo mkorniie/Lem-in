@@ -12,7 +12,18 @@
 
 NAME = lem-in
 FLAGS = -Wall -Wextra -Werror
-LEMIN_CFILES = ft_lem-in.c ft_parse.c ft_exit.c ft_fill_data.c get_next_line.c ft_util.c ft_list.c ft_matrix.c ft_valid.c ft_algorithm.c ft_optimal.c ft_go.c
+LEMIN_CFILES = ft_lem-in.c \
+				ft_parse.c \
+				ft_exit.c \
+				get_next_line.c \
+				ft_util_0.c \
+				ft_util_1.c \
+				ft_list.c \
+				ft_matrix.c \
+				ft_valid.c \
+				ft_algorithm.c \
+				ft_optimal.c \
+				ft_go.c
 LEMIN_OFILES = $(LEMIN_CFILES:.c=.o)
 
 HEADER = libft.h

@@ -41,6 +41,7 @@ int				g_has_start_end;
 int				g_n_of_rooms;
 t_list			*g_comments_head;
 t_list			*g_optimalpool;
+int				g_optimal_len;
 int				g_start_index;
 int				g_end_index;
 t_list			*g_ways;
@@ -77,4 +78,5 @@ int				ft_intlsthascontent(int *content);
 int				ft_findgraphindex(char *name);
 int				ft_unique_name(char *name);
 int				ft_unique_name_and_coords(char *name, int pos_x, int pos_y);
+void			ft_go(void);
 #endif
