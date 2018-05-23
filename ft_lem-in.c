@@ -16,10 +16,8 @@ void	ft_print_matrix(void)
 {
 	int i;
 	int z;
-	// int len;
 
 	i = 0;
-	// len = ft_graphlistlen();
 	while (i < g_n_of_rooms)
 	{
 		z = 0;
@@ -52,8 +50,6 @@ int		main(void)
 		ft_putstr("ERROR\n");
 		return (0);
 	}
-	ft_printgraphlist();
-	ft_print_matrix();
 	ft_solve();
 	return (0);
 }

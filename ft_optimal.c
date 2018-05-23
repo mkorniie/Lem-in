@@ -70,7 +70,6 @@ t_list	*ft_findshortest(void)
 	{
 		if (ft_countpathlen(tmp) == shortes_len)
 		{
-			// ft_printf("It's equal! %d\n", sizeof(t_list*));
 			add = ft_lstnew(tmp, sizeof(t_list*));
 			ft_lstaddtotail(&all_optimal_pathes, add);
 		}
@@ -86,7 +85,6 @@ void	ft_poollstprint(t_list *pool)
 	int		*rooms;
 	int		i;
 
-	ft_printf("It's here!\n");
 	tmp = pool;
 	while (tmp)
 	{
@@ -109,5 +107,4 @@ void	ft_findoptimalways(void)
 
 	all_optimal_pathes = ft_findshortest();
 	g_optimalpool = all_optimal_pathes;
-	ft_poollstprint(g_optimalpool);
 }

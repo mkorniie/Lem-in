@@ -22,11 +22,9 @@ int		*ft_intcopy(int *tocopy, int len)
 	res[len] = 0;
 	while (i < len)
 	{
-		ft_printf("%d ", tocopy[i]);
 		res[i] = tocopy[i];
 		i++;
 	}
-	ft_printf("\n");
 	return (res);
 }
 
@@ -97,15 +95,11 @@ void	ft_fill_pathmatrix(void)
 	ft_findpath(g_start_index, rooms);
 	if (g_ways == NULL)
 		ft_exit();
-	ft_lstprint(g_comments_head); // перенести - проверка на валидный инпут (есть хоть один путь, ...)
 }
 
 void	ft_solve(void)
 {
 	ft_fill_pathmatrix();
-	ft_printf("Lst print!\n");
-	ft_lstprintintarr(g_ways);
 	ft_findoptimalways();
-	ft_printf("We are about TO GO!\n");
 	ft_go();
 }

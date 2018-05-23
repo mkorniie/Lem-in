@@ -14,7 +14,6 @@
 
 t_graph_point	*ft_findby_index(int index)
 {
-	write (1, "s\n", 2);
 	t_graph_point *tmp;
 	int i;
 
@@ -88,7 +87,6 @@ void			ft_print_n(int len, int front_ant, t_graph_point **order)
 	int i;
 	int z;
 
-	// order = NULL;
 	i = 0;
 	if (len == g_optimal_len - 1)
 	{
