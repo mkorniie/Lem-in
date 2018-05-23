@@ -14,9 +14,9 @@
 
 char	**ft_getroomparams(char *line)
 {
-	char *temp;
-	char **split;
-	int i;
+	char	*temp;
+	char	**split;
+	int		i;
 
 	i = 0;
 	temp = line;
@@ -24,9 +24,9 @@ char	**ft_getroomparams(char *line)
 		return (NULL);
 	while ((temp = ft_strchr(temp, ' ')) != NULL)
 	{
-		i++; 
+		i++;
 		if (temp[1] == '\0')
-			break;
+			break ;
 		else
 			temp = temp + 1;
 	}
@@ -63,9 +63,9 @@ int		ft_parseroom(char *line)
 
 char	**ft_getlinkparams(char *line)
 {
-	char *temp;
-	char **split;
-	int i;
+	char	*temp;
+	char	**split;
+	int		i;
 
 	i = 0;
 	temp = line;
@@ -73,9 +73,9 @@ char	**ft_getlinkparams(char *line)
 		return (NULL);
 	while ((temp = ft_strchr(temp, '-')) != NULL)
 	{
-		i++; 
+		i++;
 		if (temp[1] == '\0')
-			break;
+			break ;
 		else
 			temp = temp + 1;
 	}
@@ -96,34 +96,16 @@ void	ft_parselink(char *line)
 	ft_addtomatrix(split);
 }
 
-int		ft_if_unknown_command(char *line)
-{
-	t_list *new_comment;
-
-	if (line[0] == '#' && line[1] == '#')
-	{
-		if (ft_strequ("##start", line) || ft_strequ("##end", line))
-			return (0);
-		else
-		{
-			new_comment = ft_lstnew(line, ft_strlen(line));
-			ft_lstaddtotail(&g_comments_head, new_comment);
-			return (1);
-		}
-	}
-	return (0);
-}
-
 int		ft_parse(void)
 {
 	int		len;
 	char	*line;
-	int 	flag;
+	int		flag;
 
 	flag = -1;
 	while ((len = get_next_line(0, &line)) > 0)
 	{
-		if (!ft_is_comment(line) && !ft_if_unknown_command(line)) // leave as function for readability
+		if (!ft_is_comment(line) && !ft_if_unknown_command(line))
 		{
 			if (flag == -1)
 			{

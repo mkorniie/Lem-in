@@ -12,6 +12,24 @@
 
 #include "lemin.h"
 
+int	ft_if_unknown_command(char *line)
+{
+	t_list *new_comment;
+
+	if (line[0] == '#' && line[1] == '#')
+	{
+		if (ft_strequ("##start", line) || ft_strequ("##end", line))
+			return (0);
+		else
+		{
+			new_comment = ft_lstnew(line, ft_strlen(line));
+			ft_lstaddtotail(&g_comments_head, new_comment);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int	ft_unique_name_and_coords(char *name, int pos_x, int pos_y)
 {
 	t_graph_point *tmp;
@@ -30,10 +48,10 @@ int	ft_unique_name_and_coords(char *name, int pos_x, int pos_y)
 
 int	ft_intlsthascontent(int *content)
 {
-	t_list *tmp;
-	int boolean;
-	int i;
-	int *tmp_content;
+	t_list	*tmp;
+	int		boolean;
+	int		i;
+	int		*tmp_content;
 
 	tmp = g_ways;
 	while (tmp)

@@ -26,7 +26,7 @@ char	*ft_trimzeroes(char *line)
 	return (line + i);
 }
 
-int 	ft_arrlen(char **arr)
+int		ft_arrlen(char **arr)
 {
 	int i;
 
@@ -53,7 +53,7 @@ int		ft_isnumline(char *line)
 	return (1);
 }
 
-void 	ft_finish_programme(void)
+void	ft_finish_programme(void)
 {
 	ft_putstr("ERROR\n");
 	exit(0);
@@ -86,24 +86,3 @@ int		ft_lineisint(char *line)
 	}
 	return (1);
 }
-
-// int	ft_mask(char *mask, char *line)
-// {
-// 	int a;
-// 	int b;
-
-// 	a = 0;
-// 	b = 0;
-// 	if ((mask == NULL) || (line == NULL))
-// 		return (0);
-// 	while (line[b] != '\0')
-// 	{
-// 		if (mask[a] != line[b])
-// 		{
-// 			if (mask[a] == '*')
-// 				while (mask[a] == '*')
-// 					a++;
-// 		}
-// 	}
-// 	return (0);
-// }

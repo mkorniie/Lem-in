@@ -30,8 +30,8 @@ int		*ft_intcopy(int *tocopy, int len)
 
 int		ft_find_index_by_status(int status)
 {
-	t_graph_point *tmp;
-	int i;
+	t_graph_point	*tmp;
+	int				i;
 
 	tmp = g_head;
 	i = 0;
@@ -45,34 +45,30 @@ int		ft_find_index_by_status(int status)
 	return (-1);
 }
 
-void		ft_findpath(int path_n, int *rooms)
+void	ft_findpath(int path_n, int *rooms)
 {
-	int i;
-	t_list *new;
-	int *cont;
+	int		i;
+	t_list	*new;
+	int		*cont;
 
-	i = 0;
+	i = -1;
 	rooms[path_n] = 1;
-	while (i < g_n_of_rooms)
+	while (++i < g_n_of_rooms)
 	{
 		if ((g_adjacency_matrix[path_n][i] == 1) && (rooms[i] == 0))
 		{
-			if (i == g_end_index)
+			if (i == g_end_index && (ft_intlsthascontent(rooms) == 0))
 			{
-				if (ft_intlsthascontent(rooms) == 0)
-				{
-					cont = ft_intcopy(rooms, g_n_of_rooms);
-					new = ft_lstnew(cont, (g_n_of_rooms * (sizeof(int) / sizeof(void))));
-					ft_lstaddtotail(&g_ways, new);
-				}
+				cont = ft_intcopy(rooms, g_n_of_rooms);
+				new = ft_lstnew(cont, g_n_of_rooms * sizeof(int));
+				ft_lstaddtotail(&g_ways, new);
 			}
-			else
+			else if (i != g_end_index)
 			{
 				rooms[i] = 1;
 				ft_findpath(i, rooms);
 			}
 		}
-		i++;
 	}
 	rooms[path_n] = 0;
 }

@@ -27,7 +27,6 @@ int		ft_countpathlen(t_list *path)
 			len++;
 		i++;
 	}
-	// ft_printf("Now path length is %d\n", len);
 	return (len);
 }
 

@@ -12,7 +12,7 @@
 
 NAME = lem-in
 FLAGS = -Wall -Wextra -Werror
-LEMIN_CFILES = ft_lem-in.c \
+LEMIN_CFILES = ft_lemin.c \
 				ft_parse.c \
 				ft_exit.c \
 				get_next_line.c \

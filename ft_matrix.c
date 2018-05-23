@@ -23,7 +23,6 @@ int		ft_findgraphindex(char *name)
 	tmp = g_head;
 	while (tmp)
 	{
-		// ft_printf("Here!\n");
 		if (ft_strequ(tmp->name, name))
 			return (number);
 		tmp = tmp->next;
@@ -46,12 +45,10 @@ void	ft_fillwithzeroes(int *line, int len)
 
 void	ft_create_matrix(void)
 {
-	// int map_size;
 	int	i;
 
 	g_n_of_rooms = ft_graphlistlen();
 	g_adjacency_matrix = (int**)malloc(sizeof(int*) * (g_n_of_rooms + 1));
-	// ft_printf("Mapsize is %d\n", map_size);
 	if (g_adjacency_matrix == NULL)
 	{
 		perror("Error in ft_create_matrix: ");

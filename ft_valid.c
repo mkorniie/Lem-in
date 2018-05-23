@@ -26,62 +26,19 @@ void	ft_parsefirstline(char *line)
 		ft_parse_exit(line);
 }
 
-void	ft_lstprintintarr(t_list *head)
-{
-	t_list *tmp;
-	size_t i;
-	int *line;
-
-	tmp = head;
-	while (tmp)
-	{
-		i = 0;
-		line = (int*)(tmp->content);
-		while (i < (tmp->content_size / sizeof(int)))
-		{
-			ft_printf("%d ", line[i]);
-			i++;
-		}
-		write(1, "\n", 1);
-		tmp = tmp->next;
-	}
-}
-
-void	ft_lstprint(t_list *head)
-{
-	t_list *tmp;
-
-	tmp = head;
-	while (tmp)
-	{
-		write(1, tmp->content, tmp->content_size);
-		write(1, "\n", 1);
-		tmp = tmp->next;
-	}
-}
-
 void	ft_lstaddtotail(t_list **alst, t_list *new)
 {
 	t_list *tmp;
 
-	// ft_printf("It's ft_lstaddtotail!\n");
 	if (alst == NULL || new == NULL)
-	{
-		// ft_printf("It's null!\n");
 		return ;
-	}
 	if (*alst == NULL)
-	{
-		// ft_printf("It's the first one!\n");
 		*alst = new;
-	}
 	else
 	{
 		tmp = *alst;
 		while (tmp->next)
-		{
 			tmp = tmp->next;
-		}
 		tmp->next = new;
 	}
 }
