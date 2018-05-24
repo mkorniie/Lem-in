@@ -12,6 +12,19 @@
 
 #include "lemin.h"
 
+void	ft_lstprint(t_list *head)
+{
+	t_list *tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		write(1, (char*)(tmp->content), tmp->content_size);
+		write(1, "\n", 1);
+		tmp = tmp->next;
+	}
+}
+
 void	ft_print_matrix(void)
 {
 	int i;

@@ -82,7 +82,7 @@ void			ft_print_n(int len, int front_ant, t_graph_point **order)
 	int			z;
 
 	i = 0;
-	if (len == g_optimal_len - 1)
+	if (len == g_n_of_ants - 1)
 	{
 		if (end == 0)
 			end = -1;
@@ -93,7 +93,7 @@ void			ft_print_n(int len, int front_ant, t_graph_point **order)
 		z = g_optimal_len - 1;
 	else
 		z = len - 1;
-	while (i < len)
+	while ((i < len) && (front_ant + i <= g_n_of_ants))
 	{
 		ft_printf("L%d-%s ", front_ant + i, (order[z])->name);
 		i++;

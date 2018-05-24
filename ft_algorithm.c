@@ -96,6 +96,7 @@ void	ft_fill_pathmatrix(void)
 void	ft_solve(void)
 {
 	ft_fill_pathmatrix();
+	ft_lstprint(g_comments_head);
 	ft_findoptimalways();
 	ft_go();
 }
